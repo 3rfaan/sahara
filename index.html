@@ -1,0 +1,864 @@
+<!doctype html>
+<html lang="de">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Restaurant Sahara – Orientalischer Genuss in St. Gallen</title>
+
+    <link
+      href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Jost:wght@300;400;500&display=swap"
+      rel="stylesheet"
+    />
+
+    <style>
+      :root {
+        --gold: #c9922a;
+        --gold-light: #e8be74;
+        --sand: #f9f4ec;
+        --dark: #110e0b;
+        --dark-mid: #1e1710;
+        --spice: #8b2e0a;
+        --text: #2a1f14;
+        --muted: #7a6a58;
+      }
+
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      html {
+        scroll-behavior: smooth;
+      }
+
+      body {
+        font-family: "Jost", sans-serif;
+        background: #fff;
+        color: var(--text);
+        line-height: 1.65;
+        overflow-x: hidden;
+      }
+
+      /* HERO */
+      header {
+        position: relative;
+        min-height: 100vh;
+        background:
+          linear-gradient(
+            to bottom,
+            rgba(10, 7, 4, 0.35) 0%,
+            rgba(10, 7, 4, 0.7) 70%,
+            rgba(10, 7, 4, 0.92) 100%
+          ),
+          url("hero.jpeg") center/cover no-repeat;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        padding-bottom: 90px;
+        color: #fff;
+      }
+
+      nav {
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 28px 60px;
+      }
+
+      .nav-logo img {
+        width: 200px;
+      }
+
+      .nav-links {
+        display: flex;
+        gap: 36px;
+        list-style: none;
+      }
+
+      .nav-links a {
+        color: rgba(255, 255, 255, 0.75);
+        font-size: 13px;
+        font-weight: 500;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+        text-decoration: none;
+        transition: color 0.2s;
+      }
+
+      .nav-links a:hover {
+        color: var(--gold-light);
+      }
+
+      .hero-inner {
+        max-width: 1100px;
+        margin: 0 auto;
+        padding: 0 60px;
+      }
+
+      .hero-eyebrow {
+        font-size: 12px;
+        font-weight: 500;
+        letter-spacing: 0.22em;
+        text-transform: uppercase;
+        color: var(--gold-light);
+        margin-bottom: 18px;
+        opacity: 0;
+        animation: fadeUp 0.8s 0.2s forwards;
+      }
+
+      .hero-title {
+        font-family: "Playfair Display", serif;
+        font-size: clamp(52px, 8vw, 96px);
+        line-height: 1.04;
+        font-weight: 700;
+        margin-bottom: 28px;
+        opacity: 0;
+        animation: fadeUp 0.8s 0.4s forwards;
+      }
+
+      .hero-title em {
+        font-style: italic;
+        color: var(--gold-light);
+      }
+
+      .hero-desc {
+        max-width: 560px;
+        font-size: 18px;
+        font-weight: 300;
+        color: rgba(255, 255, 255, 0.8);
+        line-height: 1.75;
+        margin-bottom: 44px;
+        opacity: 0;
+        animation: fadeUp 0.8s 0.6s forwards;
+      }
+
+      .hero-actions {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        gap: 24px;
+        opacity: 0;
+        animation: fadeUp 0.8s 0.8s forwards;
+      }
+
+      .btn-primary {
+        display: inline-block;
+        background: var(--gold);
+        color: #fff;
+        padding: 15px 36px;
+        border-radius: 3px;
+        font-size: 13px;
+        font-weight: 500;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+        text-decoration: none;
+        transition:
+          background 0.2s,
+          transform 0.15s;
+      }
+
+      .btn-primary:hover {
+        background: var(--gold-light);
+        color: var(--dark);
+        transform: translateY(-1px);
+      }
+
+      .btn-ghost {
+        display: inline-block;
+        color: rgba(255, 255, 255, 0.7);
+        font-size: 13px;
+        font-weight: 500;
+        letter-spacing: 0.08em;
+        text-decoration: none;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+        padding-bottom: 2px;
+        transition:
+          color 0.2s,
+          border-color 0.2s;
+      }
+
+      .btn-ghost:hover {
+        color: var(--gold-light);
+        border-color: var(--gold-light);
+      }
+
+      .scroll-hint {
+        position: absolute;
+        bottom: 36px;
+        right: 60px;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        color: rgba(255, 255, 255, 0.4);
+        font-size: 11px;
+        letter-spacing: 0.15em;
+        text-transform: uppercase;
+        opacity: 0;
+        animation: fadeIn 1s 1.2s forwards;
+      }
+
+      .scroll-line {
+        width: 40px;
+        height: 1px;
+        background: rgba(255, 255, 255, 0.3);
+        animation: scrollPulse 2s 2s infinite;
+      }
+
+      /* DIVIDER ORNAMENT */
+      .ornament {
+        text-align: center;
+        padding: 16px 0;
+        color: var(--gold);
+        font-size: 20px;
+        letter-spacing: 0.4em;
+        opacity: 0.6;
+      }
+
+      /* STORY */
+      .story {
+        background: var(--sand);
+        padding: 100px 60px;
+      }
+
+      .story-inner {
+        max-width: 1100px;
+        margin: 0 auto;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 80px;
+        align-items: center;
+      }
+
+      .story-label {
+        font-size: 11px;
+        font-weight: 500;
+        letter-spacing: 0.2em;
+        text-transform: uppercase;
+        color: var(--gold);
+        margin-bottom: 16px;
+      }
+
+      .story-title {
+        font-family: "Playfair Display", serif;
+        font-size: clamp(36px, 4vw, 52px);
+        line-height: 1.15;
+        margin-bottom: 28px;
+        color: var(--text);
+      }
+
+      .story-title em {
+        font-style: italic;
+        color: var(--gold);
+      }
+
+      .story-text {
+        font-size: 17px;
+        font-weight: 300;
+        color: var(--muted);
+        line-height: 1.8;
+      }
+
+      .story-image {
+        position: relative;
+        border-radius: 4px;
+        overflow: hidden;
+        aspect-ratio: 4/5;
+      }
+
+      .story-image img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        display: block;
+        transition: transform 0.6s ease;
+      }
+
+      .story-image:hover img {
+        transform: scale(1.04);
+      }
+
+      .story-image::after {
+        content: "";
+        position: absolute;
+        inset: 0;
+        border: 1px solid var(--gold);
+        opacity: 0.25;
+        border-radius: 4px;
+        pointer-events: none;
+      }
+
+      /* HIGHLIGHTS */
+      .highlights {
+        padding: 100px 60px;
+        background: #fff;
+      }
+
+      .highlights-inner {
+        max-width: 1100px;
+        margin: 0 auto;
+      }
+
+      .section-header {
+        display: flex;
+        align-items: flex-end;
+        justify-content: space-between;
+        margin-bottom: 60px;
+        border-bottom: 1px solid #eee;
+        padding-bottom: 32px;
+      }
+
+      .section-label {
+        font-size: 11px;
+        font-weight: 500;
+        letter-spacing: 0.2em;
+        text-transform: uppercase;
+        color: var(--gold);
+        margin-bottom: 12px;
+      }
+
+      .section-title {
+        font-family: "Playfair Display", serif;
+        font-size: clamp(30px, 3.5vw, 44px);
+        color: var(--text);
+        line-height: 1.15;
+      }
+
+      .highlight-grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 2px;
+        background: #eee;
+      }
+
+      .highlight-item {
+        background: #fff;
+        padding: 44px 36px;
+        position: relative;
+        overflow: hidden;
+        transition: background 0.3s;
+      }
+
+      .highlight-item:hover {
+        background: var(--sand);
+      }
+
+      .highlight-number {
+        font-family: "Playfair Display", serif;
+        font-size: 64px;
+        font-style: italic;
+        color: var(--gold-light);
+        opacity: 0.35;
+        position: absolute;
+        top: 20px;
+        right: 28px;
+        line-height: 1;
+        pointer-events: none;
+      }
+
+      .highlight-icon {
+        font-size: 28px;
+        margin-bottom: 20px;
+      }
+
+      .highlight-title {
+        font-family: "Playfair Display", serif;
+        font-size: 22px;
+        margin-bottom: 12px;
+        color: var(--text);
+      }
+
+      .highlight-desc {
+        font-size: 15px;
+        color: var(--muted);
+        font-weight: 300;
+        line-height: 1.7;
+      }
+
+      /* INFO + HOURS */
+      .info-section {
+        background: var(--dark-mid);
+        padding: 100px 60px;
+        color: #fff;
+      }
+
+      .info-inner {
+        max-width: 1100px;
+        margin: 0 auto;
+        display: grid;
+        grid-template-columns: 1.2fr 1fr;
+        gap: 80px;
+        align-items: start;
+      }
+
+      .info-section .section-label {
+        color: var(--gold-light);
+      }
+      .info-section .section-title {
+        color: #fff;
+      }
+
+      .info-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 32px;
+        margin-top: 40px;
+      }
+
+      .info-card {
+        border-top: 1px solid rgba(255, 255, 255, 0.12);
+        padding-top: 20px;
+      }
+
+      .info-card-label {
+        font-size: 11px;
+        font-weight: 500;
+        letter-spacing: 0.18em;
+        text-transform: uppercase;
+        color: var(--gold-light);
+        margin-bottom: 10px;
+      }
+
+      .info-card p {
+        font-size: 16px;
+        font-weight: 300;
+        color: rgba(255, 255, 255, 0.75);
+        line-height: 1.7;
+      }
+
+      .info-card a {
+        color: rgba(255, 255, 255, 0.75);
+        text-decoration: none;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+        padding-bottom: 1px;
+        transition:
+          color 0.2s,
+          border-color 0.2s;
+      }
+
+      .info-card a:hover {
+        color: var(--gold-light);
+        border-color: var(--gold-light);
+      }
+
+      /* HOURS TABLE */
+      .hours-side .section-label {
+        color: var(--gold-light);
+        margin-bottom: 12px;
+      }
+
+      .hours-title {
+        font-family: "Playfair Display", serif;
+        font-size: 34px;
+        color: #fff;
+        margin-bottom: 36px;
+      }
+
+      .hours-table {
+        width: 100%;
+        border-collapse: collapse;
+      }
+
+      .hours-table tr {
+        border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+      }
+
+      .hours-table tr:last-child {
+        border-bottom: none;
+      }
+
+      .hours-table td {
+        padding: 14px 0;
+        font-size: 15px;
+        font-weight: 300;
+        color: rgba(255, 255, 255, 0.7);
+        vertical-align: top;
+      }
+
+      .hours-table td:first-child {
+        width: 40%;
+        font-weight: 400;
+        color: rgba(255, 255, 255, 0.9);
+      }
+
+      .hours-table .closed {
+        color: rgba(255, 255, 255, 0.3);
+        font-style: italic;
+      }
+
+      /* RESERVE */
+      .reserve-section {
+        padding: 120px 60px;
+        text-align: center;
+        background: var(--sand);
+        position: relative;
+        overflow: hidden;
+      }
+
+      .reserve-section::before {
+        content: "ﷺ";
+        position: absolute;
+        font-size: 320px;
+        color: rgba(201, 146, 42, 0.05);
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        pointer-events: none;
+        font-family: serif;
+      }
+
+      .reserve-inner {
+        position: relative;
+        max-width: 600px;
+        margin: 0 auto;
+      }
+
+      .reserve-inner .section-label {
+        margin-bottom: 16px;
+      }
+
+      .reserve-title {
+        font-family: "Playfair Display", serif;
+        font-size: clamp(36px, 5vw, 60px);
+        color: var(--text);
+        line-height: 1.15;
+        margin-bottom: 24px;
+      }
+
+      .reserve-title em {
+        font-style: italic;
+        color: var(--gold);
+      }
+
+      .reserve-desc {
+        font-size: 17px;
+        font-weight: 300;
+        color: var(--muted);
+        margin-bottom: 44px;
+        line-height: 1.75;
+      }
+
+      .btn-dark {
+        display: inline-block;
+        background: var(--dark);
+        color: #fff;
+        padding: 17px 44px;
+        border-radius: 3px;
+        font-size: 13px;
+        font-weight: 500;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+        text-decoration: none;
+        transition:
+          background 0.2s,
+          transform 0.15s;
+      }
+
+      .btn-dark:hover {
+        background: var(--spice);
+        transform: translateY(-2px);
+      }
+
+      /* FOOTER */
+      footer {
+        background: var(--dark);
+        color: rgba(255, 255, 255, 0.35);
+        padding: 32px 60px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        font-size: 13px;
+        font-weight: 300;
+      }
+
+      .footer-logo img {
+        width: 250px;
+      }
+
+      /* SCROLL ANIMATIONS */
+      .reveal {
+        opacity: 0;
+        transform: translateY(28px);
+        transition:
+          opacity 0.7s ease,
+          transform 0.7s ease;
+      }
+
+      .reveal.visible {
+        opacity: 1;
+        transform: translateY(0);
+      }
+
+      @keyframes fadeUp {
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+        from {
+          opacity: 0;
+          transform: translateY(20px);
+        }
+      }
+
+      @keyframes fadeIn {
+        to {
+          opacity: 1;
+        }
+        from {
+          opacity: 0;
+        }
+      }
+
+      @keyframes scrollPulse {
+        0%,
+        100% {
+          opacity: 0.3;
+          width: 40px;
+        }
+        50% {
+          opacity: 0.9;
+          width: 60px;
+        }
+      }
+
+      /* RESPONSIVE */
+      @media (max-width: 900px) {
+        nav {
+          padding: 24px 28px;
+        }
+        .nav-links {
+          display: none;
+        }
+        .hero-inner {
+          padding: 0 28px;
+        }
+        .story {
+          padding: 70px 28px;
+        }
+        .story-inner {
+          grid-template-columns: 1fr;
+          gap: 48px;
+        }
+        .story-image {
+          aspect-ratio: 3/2;
+        }
+        .highlights {
+          padding: 70px 28px;
+        }
+        .section-header {
+          flex-direction: column;
+          align-items: flex-start;
+          gap: 12px;
+        }
+        .highlight-grid {
+          grid-template-columns: 1fr;
+        }
+        .info-section {
+          padding: 70px 28px;
+        }
+        .info-inner {
+          grid-template-columns: 1fr;
+          gap: 52px;
+        }
+        .info-grid {
+          grid-template-columns: 1fr;
+          gap: 24px;
+        }
+        .reserve-section {
+          padding: 80px 28px;
+        }
+        footer {
+          flex-direction: column;
+          gap: 12px;
+          padding: 28px;
+          text-align: center;
+        }
+        .footer-logo {
+          width: 250px;
+        }
+        .scroll-hint {
+          display: none;
+        }
+      }
+    </style>
+  </head>
+
+  <body>
+    <header>
+      <nav>
+        <span class="nav-logo"><img src="logo.png" /></span>
+        <ul class="nav-links">
+          <li><a href="#story">Geschichte</a></li>
+          <li><a href="#info">Infos</a></li>
+          <li><a href="#reservieren">Reservieren</a></li>
+        </ul>
+      </nav>
+
+      <div class="hero-inner">
+        <p class="hero-eyebrow">Orientalische Küche · St. Gallen</p>
+        <h1 class="hero-title">Tausend und<br /><em>eine Nacht</em></h1>
+        <p class="hero-desc">
+          Die Stadt ist manchmal eine Wüste. Doch ganz nah verbergen sich die Wunder des Orients –
+          duftende Gewürze, traditionelle Rezepte und eine Herzlichkeit, die wärmt.
+        </p>
+        <div class="hero-actions">
+          <a href="#reservieren" class="btn-primary">Tisch reservieren</a>
+          <a href="#info" class="btn-ghost">Öffnungszeiten →</a>
+        </div>
+      </div>
+
+      <div class="scroll-hint">
+        <div class="scroll-line"></div>
+        <span>Scrollen</span>
+      </div>
+    </header>
+
+    <section class="story" id="story">
+      <div class="story-inner">
+        <div class="story-text-col reveal">
+          <p class="story-label">Unser Restaurant</p>
+          <h2 class="story-title">Willkommen<br />im <em>Orient</em></h2>
+          <p class="story-text">
+            Erleben Sie authentische orientalische Küche in einer warmen, stilvollen Atmosphäre.
+            Duftende Gewürze, traditionelle Rezepte und frische Zutaten bringen die Vielfalt des
+            Orients direkt nach St. Gallen. Jedes Gericht ist eine Reise – jeder Abend eine
+            Erinnerung.
+          </p>
+        </div>
+        <div class="story-image reveal" style="transition-delay: 0.15s">
+          <img src="story.jpeg" alt="Orientalische Speisen" loading="lazy" />
+        </div>
+      </div>
+    </section>
+
+    <section class="highlights" id="highlights">
+      <div class="highlights-inner">
+        <div class="section-header reveal">
+          <div>
+            <p class="section-label">Was uns ausmacht</p>
+            <h2 class="section-title">Geschmack,<br />der bleibt</h2>
+          </div>
+        </div>
+        <div class="highlight-grid">
+          <div class="highlight-item reveal">
+            <span class="highlight-number">01</span>
+            <div class="highlight-icon">🫙</div>
+            <h3 class="highlight-title">Authentische Gewürze</h3>
+            <p class="highlight-desc">
+              Direkt importierte Gewürze aus dem Orient verleihen jedem Gericht seine
+              unverwechselbare Tiefe und Wärme.
+            </p>
+          </div>
+          <div class="highlight-item reveal" style="transition-delay: 0.1s">
+            <span class="highlight-number">02</span>
+            <div class="highlight-icon">🌿</div>
+            <h3 class="highlight-title">Frische Zutaten</h3>
+            <p class="highlight-desc">
+              Tagesfrische Produkte aus der Region verbinden sich mit orientalischer Küchentradition
+              zu etwas Besonderem.
+            </p>
+          </div>
+          <div class="highlight-item reveal" style="transition-delay: 0.2s">
+            <span class="highlight-number">03</span>
+            <div class="highlight-icon">🕌</div>
+            <h3 class="highlight-title">Warme Atmosphäre</h3>
+            <p class="highlight-desc">
+              Ein Ort zum Verweilen, zum Genießen, zum Entdecken – mitten in St. Gallen und doch
+              weit weg.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="info-section" id="info">
+      <div class="info-inner">
+        <div>
+          <p class="section-label">Besuchen Sie uns</p>
+          <h2 class="section-title reveal">
+            Zu finden mitten in <br />
+            St. Gallen
+          </h2>
+          <div class="info-grid">
+            <div class="info-card reveal">
+              <p class="info-card-label">Adresse</p>
+              <p>Rorschacher Strasse 53<br />9000 St. Gallen</p>
+            </div>
+            <div class="info-card reveal" style="transition-delay: 0.1s">
+              <p class="info-card-label">Telefon</p>
+              <p><a href="tel:+41712443557">071 244 35 57</a></p>
+            </div>
+            <div class="info-card reveal" style="transition-delay: 0.15s">
+              <p class="info-card-label">E-Mail</p>
+              <p><a href="mailto:info@sahara-restaurant.ch">info@sahara-restaurant.ch</a></p>
+            </div>
+            <div class="info-card reveal" style="transition-delay: 0.2s">
+              <p class="info-card-label">Reservierung</p>
+              <p>Telefonisch oder per E-Mail</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="hours-side reveal" style="transition-delay: 0.2s">
+          <p class="section-label">Öffnungszeiten</p>
+          <h3 class="hours-title">Wir sind für Sie da</h3>
+          <table class="hours-table">
+            <tr>
+              <td>Montag</td>
+              <td class="closed">Ruhetag</td>
+            </tr>
+            <tr>
+              <td>Dienstag – Freitag</td>
+              <td>11:00 – 16:00<br />17:30 – 22:00</td>
+            </tr>
+            <tr>
+              <td>Samstag</td>
+              <td>11:00 – 23:00</td>
+            </tr>
+            <tr>
+              <td>Sonntag</td>
+              <td>11:30 – 21:00</td>
+            </tr>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <section class="reserve-section" id="reservieren">
+      <div class="reserve-inner">
+        <p class="section-label reveal">Tischreservierung</p>
+        <h2 class="reserve-title reveal">Ihr Tisch<br />wartet auf <em>Sie</em></h2>
+        <p class="reserve-desc reveal">
+          Reservieren Sie bequem per Telefon. Wir freuen uns auf Ihren Besuch und sorgen dafür, dass
+          Ihr Abend unvergesslich wird.
+        </p>
+        <a href="tel:+41712443557" class="btn-dark reveal">071 244 35 57 – Anrufen</a>
+      </div>
+    </section>
+
+    <footer>
+      <span class="footer-logo"><img src="logo.png" /></span>
+      <span>© 2026 Restaurant Sahara, St. Gallen – Alle Rechte vorbehalten</span>
+    </footer>
+
+    <script>
+      const reveals = document.querySelectorAll(".reveal");
+      const observer = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((e) => {
+            if (e.isIntersecting) {
+              e.target.classList.add("visible");
+              observer.unobserve(e.target);
+            }
+          });
+        },
+        { threshold: 0.12 },
+      );
+      reveals.forEach((el) => observer.observe(el));
+    </script>
+  </body>
+</html>
