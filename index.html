@@ -563,6 +563,175 @@
         transform: translateY(-2px);
       }
 
+      /* RESERVATION FORM SECTION */
+      .form-section {
+        background: var(--dark);
+        padding: 100px 60px;
+        color: #fff;
+        position: relative;
+        overflow: hidden;
+      }
+
+      .form-section::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        height: 1px;
+        background: linear-gradient(to right, transparent, var(--gold), transparent);
+        opacity: 0.4;
+      }
+
+      .form-inner {
+        max-width: 1100px;
+        margin: 0 auto;
+        display: grid;
+        grid-template-columns: 1fr 1.4fr;
+        gap: 100px;
+        align-items: start;
+      }
+
+      .form-intro .section-label {
+        color: var(--gold-light);
+        margin-bottom: 16px;
+      }
+
+      .form-intro-title {
+        font-family: "Playfair Display", serif;
+        font-size: clamp(32px, 4vw, 50px);
+        line-height: 1.15;
+        color: #fff;
+        margin-bottom: 24px;
+      }
+
+      .form-intro-title em {
+        font-style: italic;
+        color: var(--gold-light);
+      }
+
+      .form-intro-text {
+        font-size: 16px;
+        font-weight: 300;
+        color: rgba(255, 255, 255, 0.55);
+        line-height: 1.8;
+      }
+
+      .form-intro-divider {
+        width: 40px;
+        height: 1px;
+        background: var(--gold);
+        opacity: 0.5;
+        margin: 32px 0;
+      }
+
+      .form-intro-note {
+        font-size: 13px;
+        font-weight: 300;
+        color: rgba(255, 255, 255, 0.35);
+        line-height: 1.7;
+      }
+
+      /* FORM FIELDS */
+      .reservation-form {
+        display: flex;
+        flex-direction: column;
+        gap: 0;
+      }
+
+      .form-row {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 20px;
+      }
+
+      .form-group {
+        display: flex;
+        flex-direction: column;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        padding: 20px 0 16px;
+        transition: border-color 0.2s;
+      }
+
+      .form-group:focus-within {
+        border-color: var(--gold);
+      }
+
+      .form-group label {
+        font-size: 10px;
+        font-weight: 500;
+        letter-spacing: 0.2em;
+        text-transform: uppercase;
+        color: var(--gold-light);
+        margin-bottom: 10px;
+      }
+
+      .form-group input,
+      .form-group textarea {
+        background: transparent;
+        border: none;
+        outline: none;
+        font-family: "Jost", sans-serif;
+        font-size: 16px;
+        font-weight: 300;
+        color: #fff;
+        width: 100%;
+        caret-color: var(--gold);
+      }
+
+      .form-group input::placeholder,
+      .form-group textarea::placeholder {
+        color: rgba(255, 255, 255, 0.2);
+      }
+
+      .form-group textarea {
+        resize: none;
+        height: 72px;
+        line-height: 1.65;
+      }
+
+      .form-group.full {
+        grid-column: 1 / -1;
+      }
+
+      .form-submit {
+        margin-top: 40px;
+        display: flex;
+        align-items: center;
+        gap: 24px;
+      }
+
+      .btn-submit {
+        display: inline-block;
+        background: var(--gold);
+        color: #fff;
+        padding: 16px 40px;
+        border-radius: 3px;
+        font-family: "Jost", sans-serif;
+        font-size: 13px;
+        font-weight: 500;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+        border: none;
+        cursor: pointer;
+        transition:
+          background 0.2s,
+          transform 0.15s;
+      }
+
+      .btn-submit:hover {
+        background: var(--gold-light);
+        color: var(--dark);
+        transform: translateY(-1px);
+      }
+
+      .form-submit-note {
+        font-size: 12px;
+        font-weight: 300;
+        color: rgba(255, 255, 255, 0.3);
+        line-height: 1.6;
+      }
+
       /* FOOTER */
       footer {
         background: var(--dark);
@@ -573,6 +742,7 @@
         align-items: center;
         font-size: 13px;
         font-weight: 300;
+        border-top: 1px solid rgba(255, 255, 255, 0.06);
       }
 
       .footer-logo img {
@@ -670,6 +840,17 @@
         }
         .reserve-section {
           padding: 80px 28px;
+        }
+        .form-section {
+          padding: 70px 28px;
+        }
+        .form-inner {
+          grid-template-columns: 1fr;
+          gap: 52px;
+        }
+        .form-row {
+          grid-template-columns: 1fr;
+          gap: 0;
         }
         footer {
           flex-direction: column;
@@ -833,10 +1014,71 @@
         <p class="section-label reveal">Tischreservierung</p>
         <h2 class="reserve-title reveal">Ihr Tisch<br />wartet auf <em>Sie</em></h2>
         <p class="reserve-desc reveal">
-          Reservieren Sie bequem per Telefon. Wir freuen uns auf Ihren Besuch und sorgen dafür, dass
-          Ihr Abend unvergesslich wird.
+          Reservieren Sie bequem per Telefon oder füllen Sie das Formular unten aus – wir freuen uns
+          auf Ihren Besuch.
         </p>
         <a href="tel:+41712443557" class="btn-dark reveal">071 244 35 57 – Anrufen</a>
+      </div>
+    </section>
+
+    <!-- RESERVATION FORM -->
+    <section class="form-section">
+      <div class="form-inner">
+        <div class="form-intro reveal">
+          <p class="section-label">Online anfragen</p>
+          <h2 class="form-intro-title">Tisch<br /><em>reservieren</em></h2>
+          <p class="form-intro-text">
+            Füllen Sie das Formular aus und wir werden Ihnen eine Bestätigung zusenden. Für
+            dringende Anfragen erreichen Sie uns direkt telefonisch.
+          </p>
+          <div class="form-intro-divider"></div>
+          <p class="form-intro-note">
+            Es öffnet sich Ihr E-Mail-Programm mit den eingetragenen Daten. Bitte senden Sie die
+            E-Mail ab, um Ihre Anfrage zu übermitteln.
+          </p>
+        </div>
+
+        <div class="reveal" style="transition-delay: 0.15s">
+          <div class="reservation-form" id="reservationForm">
+            <div class="form-row">
+              <div class="form-group">
+                <label for="res-name">Name</label>
+                <input type="text" id="res-name" placeholder="Ihr vollständiger Name" />
+              </div>
+              <div class="form-group">
+                <label for="res-phone">Telefonnummer</label>
+                <input type="tel" id="res-phone" placeholder="+41 xx xxx xx xx" />
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="res-address">Adresse</label>
+              <input type="text" id="res-address" placeholder="Strasse, PLZ Ort" />
+            </div>
+            <div class="form-row">
+              <div class="form-group">
+                <label for="res-date">Datum</label>
+                <input type="date" id="res-date" />
+              </div>
+              <div class="form-group">
+                <label for="res-guests">Anzahl Personen</label>
+                <input type="number" id="res-guests" placeholder="2" min="1" max="50" />
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="res-message">Bemerkungen (optional)</label>
+              <textarea
+                id="res-message"
+                placeholder="Besondere Wünsche, Allergien, Anlass …"
+              ></textarea>
+            </div>
+            <div class="form-submit">
+              <button type="button" class="btn-submit" onclick="sendReservation()">
+                Anfrage absenden
+              </button>
+              <p class="form-submit-note">Öffnet Ihr<br />E-Mail-Programm</p>
+            </div>
+          </div>
+        </div>
       </div>
     </section>
 
@@ -846,6 +1088,7 @@
     </footer>
 
     <script>
+      // Scroll reveal
       const reveals = document.querySelectorAll(".reveal");
       const observer = new IntersectionObserver(
         (entries) => {
@@ -859,6 +1102,45 @@
         { threshold: 0.12 },
       );
       reveals.forEach((el) => observer.observe(el));
+
+      // Mailto reservation
+      function sendReservation() {
+        const name = document.getElementById("res-name").value.trim();
+        const phone = document.getElementById("res-phone").value.trim();
+        const address = document.getElementById("res-address").value.trim();
+        const date = document.getElementById("res-date").value;
+        const guests = document.getElementById("res-guests").value.trim();
+        const message = document.getElementById("res-message").value.trim();
+
+        if (!name || !phone || !address) {
+          alert("Bitte füllen Sie mindestens Name, Telefonnummer und Adresse aus.");
+          return;
+        }
+
+        const subject = encodeURIComponent("Tischreservierung – " + name);
+
+        const body = encodeURIComponent(
+          "Guten Tag,\n\n" +
+            "ich möchte gerne einen Tisch reservieren.\n\n" +
+            "Name:            " +
+            name +
+            "\n" +
+            "Telefonnummer:   " +
+            phone +
+            "\n" +
+            "Adresse:         " +
+            address +
+            "\n" +
+            (date ? "Datum:           " + date + "\n" : "") +
+            (guests ? "Anzahl Personen: " + guests + "\n" : "") +
+            (message ? "\nBemerkungen:\n" + message + "\n" : "") +
+            "\nMit freundlichen Grüssen,\n" +
+            name,
+        );
+
+        window.location.href =
+          "mailto:info@sahara-restaurant.ch?subject=" + subject + "&body=" + body;
+      }
     </script>
   </body>
 </html>
