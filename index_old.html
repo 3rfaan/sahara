@@ -1061,17 +1061,15 @@
                 <input type="tel" id="res-phone" placeholder="+41 xx xxx xx xx" />
               </div>
             </div>
+            <div class="form-group">
+              <label for="res-address">Adresse</label>
+              <input type="text" id="res-address" placeholder="Strasse, PLZ Ort" />
+            </div>
             <div class="form-row">
               <div class="form-group">
                 <label for="res-date">Datum</label>
                 <input type="date" id="res-date" />
               </div>
-              <div class="form-group">
-                <label for="res-time">Uhrzeit</label>
-                <input type="time" id="res-time" />
-              </div>
-            </div>
-            <div class="form-row">
               <div class="form-group">
                 <label for="res-guests">Anzahl Personen</label>
                 <input type="number" id="res-guests" placeholder="2" min="1" max="50" />
@@ -1120,25 +1118,15 @@
       function sendReservation() {
         const name = document.getElementById("res-name").value.trim();
         const phone = document.getElementById("res-phone").value.trim();
+        const address = document.getElementById("res-address").value.trim();
         const date = document.getElementById("res-date").value;
-        const time = document.getElementById("res-time").value;
         const guests = document.getElementById("res-guests").value.trim();
         const message = document.getElementById("res-message").value.trim();
 
-        if (!name || !phone) {
-          alert("Bitte füllen Sie mindestens Name und Telefonnummer aus.");
+        if (!name || !phone || !address) {
+          alert("Bitte füllen Sie mindestens Name, Telefonnummer und Adresse aus.");
           return;
         }
-
-        // Format date to de-CH style (DD.MM.YYYY)
-        let formattedDate = date;
-        if (date) {
-          const [y, m, d] = date.split("-");
-          formattedDate = `${d}.${m}.${y}`;
-        }
-
-        // Format time (HH:MM Uhr)
-        const formattedTime = time ? `${time} Uhr` : "";
 
         const subject = encodeURIComponent("Tischreservierung – " + name);
 
@@ -1151,8 +1139,10 @@
             "Telefonnummer:   " +
             phone +
             "\n" +
-            (formattedDate ? "Datum:           " + formattedDate + "\n" : "") +
-            (formattedTime ? "Uhrzeit:         " + formattedTime + "\n" : "") +
+            "Adresse:         " +
+            address +
+            "\n" +
+            (date ? "Datum:           " + date + "\n" : "") +
             (guests ? "Anzahl Personen: " + guests + "\n" : "") +
             (message ? "\nBemerkungen:\n" + message + "\n" : "") +
             "\nMit freundlichen Grüssen,\n" +
